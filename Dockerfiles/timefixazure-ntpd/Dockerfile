@@ -10,4 +10,4 @@ COPY boot.sh /
 
 WORKDIR /root/
 
-ENTRYPOINT [ "/boot.sh" ]
+ENTRYPOINT [ "bash", "/boot.sh" ]

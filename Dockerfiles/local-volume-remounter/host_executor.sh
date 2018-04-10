@@ -7,10 +7,9 @@ Before=docker.service
 
 [Service]
 Type=oneshot
-# the default is not to use systemd for cgroups because the delegate issues still
-# exists and systemd currently does not support the cgroup feature set required
-# for containers run by docker
-ExecStart=/host_remap.sh
+ExecStart=/bin/bash "/host_remap.sh"
+User=root
+Group=root
 
 [Install]
 WantedBy=multi-user.target

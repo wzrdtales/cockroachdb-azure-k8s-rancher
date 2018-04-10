@@ -1,6 +1,8 @@
 cat <<EOF > /etc/systemd/system/remapper.service
 [Unit]
 Description=Remapper for azure
+After=network.target docker.socket
+Requires=docker.socket
 Before=docker.service
 
 [Service]

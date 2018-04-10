@@ -1,0 +1,35 @@
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: azure-remount
+  namespace: default
+  labels:
+    app: azure-remount
+spec:
+  selector:
+    matchLabels:
+      app: azure-remount
+  template:
+    metadata:
+      labels:
+        app: azure-remount
+    spec:
+      containers:
+        - image: "wzrdtales/cockroachdb-azure:remount"
+          imagePullPolicy: "Always"
+          name: azure-remount
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: home
+              mountPath: /home
+            - name: mnt
+              mountPath: /mnt
+      volumes:
+        - name: home
+          hostPath:
+            path: /home
+        - name: mnt
+          hostPath:
+            path: /mnt

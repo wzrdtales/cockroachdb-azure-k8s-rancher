@@ -18,7 +18,11 @@ spec:
       containers:
         - image: "wzrdtales/cockroachdb-azure:ntpd"
           imagePullPolicy: "Always"
-          name: provisioner
-          securityContext:
-            capabilities:
-              add: ["SYS_NICE", "SYS_TIME", "SYS_RESOURCE"]
+          name: azure-ntpd
+          volumeMounts:
+            - name: unbind
+              mountPath: /root/unbind
+      volumes:
+        - name: unbind
+          hostPath:
+            path: /sys/bus/vmbus/drivers/hv_util/unbind

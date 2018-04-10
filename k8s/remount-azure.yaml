@@ -15,6 +15,9 @@ spec:
       labels:
         app: azure-remount
     spec:
+      hostIPC: true
+      hostNetwork: true
+      hostPID: true
       containers:
         - image: "wzrdtales/cockroachdb-azure:remount"
           imagePullPolicy: "Always"
@@ -26,6 +29,12 @@ spec:
               mountPath: /home
             - name: mnt
               mountPath: /mnt
+            - name: dev
+              mountPath: /dev
+            - name: sys
+              mountPath: /sys
+            - name: hkeys
+              mountPath: /root/hkeys
       volumes:
         - name: home
           hostPath:
@@ -33,3 +42,12 @@ spec:
         - name: mnt
           hostPath:
             path: /mnt
+        - name: dev
+          hostPath:
+            path: /dev
+        - name: sys
+          hostPath:
+            path: /sys
+        - name: hkeys
+          hostPath:
+            path: /root/.ssh

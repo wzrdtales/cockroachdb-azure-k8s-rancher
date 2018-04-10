@@ -1,0 +1,23 @@
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: azure-ntpd
+  namespace: default
+  labels:
+    app: azure-ntpd
+spec:
+  selector:
+    matchLabels:
+      app: azure-ntpd
+  template:
+    metadata:
+      labels:
+        app: azure-ntpd
+    spec:
+      containers:
+        - image: "wzrdtales/cockroachdb-azure:ntpd"
+          imagePullPolicy: "Always"
+          name: provisioner
+          securityContext:
+            add: ["SYS_NICE", "SYS_TIME", "SYS_RESOURCE"]

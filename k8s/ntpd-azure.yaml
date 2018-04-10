@@ -20,4 +20,5 @@ spec:
           imagePullPolicy: "Always"
           name: provisioner
           securityContext:
-            add: ["SYS_NICE", "SYS_TIME", "SYS_RESOURCE"]
+            capabilities:
+              add: ["SYS_NICE", "SYS_TIME", "SYS_RESOURCE"]

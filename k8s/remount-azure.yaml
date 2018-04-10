@@ -25,29 +25,9 @@ spec:
           securityContext:
             privileged: true
           volumeMounts:
-            - name: home
-              mountPath: /home
-            - name: mnt
-              mountPath: /mnt
-            - name: dev
-              mountPath: /dev
-            - name: sys
-              mountPath: /sys
             - name: hkeys
               mountPath: /root/hkeys
       volumes:
-        - name: home
-          hostPath:
-            path: /home
-        - name: mnt
-          hostPath:
-            path: /mnt
-        - name: dev
-          hostPath:
-            path: /dev
-        - name: sys
-          hostPath:
-            path: /sys
         - name: hkeys
           hostPath:
             path: /root/.ssh
